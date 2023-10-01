@@ -1,44 +1,17 @@
 <script lang="ts">
 import type { PropType } from 'vue';
-
 export default {
-    name: "Attempts",
+    name: "CurrentAttempt",
     props: {
-        attemptedCodes: {
-            type: Array as PropType<string[][]>,
-            required: true
-        },
-        getClass: {
-            type: Function,
+        currentCodeAttempt: {
+            type: Array as PropType<string[]>,
             required: true
         }
-        
     }
 }
-interface AttemptedCodes {
-    attemptedCodes: string[][];
-} 
 </script>
-<template>
-    <h2>here are your attempts</h2>
-    <div :id=$style.attemptListContainer>
-        <ul :id=$style.attemptList v-for="list in attemptedCodes">
-            <li v-for="color in list" :class="$style[getClass(color)]"></li>
-        </ul>
-    </div>
-</template>
+<template></template>
 <style module>
-#attemptListContainer {
-    background-color: gray;
-    height: 70vh;
-}
-
-#attemptList {
-    list-style: none;
-    display: flex;
-    width: 100%;
-}
-
 .redCircle {
     height: 3em;
     width: 3em;
@@ -78,6 +51,7 @@ interface AttemptedCodes {
     border-radius: 50%;
     background-color: blue;
 }
+
 .indigoCircle {
     height: 3em;
     width: 3em;
@@ -85,6 +59,7 @@ interface AttemptedCodes {
     border-radius: 50%;
     background-color: indigo;
 }
+
 .violetCircle {
     height: 3em;
     width: 3em;
