@@ -2,16 +2,39 @@
 import type { PropType } from 'vue';
 export default {
     name: "CurrentAttempt",
+    emits: ["colorRemoved"],
     props: {
         currentCodeAttempt: {
             type: Array as PropType<string[]>,
             required: true
+        },
+        getClass: {
+            type: Function,
+            required: true
+        }
+    },
+    methods: {
+        emitRemoveColor(index: number) {
+            this.$emit("colorRemoved", index)
         }
     }
 }
 </script>
-<template></template>
+<template>
+    <ul :id=$style.currentAttemptContainer>
+        <li v-for="(color, index) in currentCodeAttempt" :class="$style[getClass(color)]" @click="emitRemoveColor(index)"></li>
+    </ul>
+</template>
 <style module>
+#currentAttemptContainer {
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+    max-width: 30em;
+    list-style: none;
+    padding: 0;
+}
+
 .redCircle {
     height: 3em;
     width: 3em;
