@@ -20,7 +20,7 @@ interface AttemptedCodes {
 } 
 </script>
 <template>
-    <h2>here are your attempts</h2>
+    <!-- <h2>here are your attempts</h2> -->
     <div :id=$style.attemptListContainer>
         <ul :id=$style.attemptList v-for="list in attemptedCodes">
             <li v-for="color in list" :class="$style[getClass(color)]"></li>
@@ -30,7 +30,9 @@ interface AttemptedCodes {
 <style module>
 #attemptListContainer {
     background-color: gray;
-    height: 70vh;
+    height: 60vh;
+    max-width: 30em;
+    border-radius: 10px;
 }
 
 #attemptList {

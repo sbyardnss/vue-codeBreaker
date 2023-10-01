@@ -22,19 +22,38 @@ export default {
 }
 </script>
 <template>
-    <h2>here is where the user input will go</h2>
-    <ul :id="$style.choicesContainer">
-        <li v-for="color of colorChoices" :class="$style[getClass(color)]" @click="handleColorClicked(color)"></li>
-    </ul>
+    <!-- <h2>here is where the user input will go</h2> -->
+    <div :id="$style.inputContainer">
+        <h3 :class="$style.header">select colors</h3>
+        <ul :id="$style.choicesContainer">
+            <li v-for="color of colorChoices" :class="$style[getClass(color)]" @click="handleColorClicked(color)"></li>
+        </ul>
+    </div>
 </template>
 <style module>
-#choicesContainer {
+#inputContainer {
     display: flex;
-    justify-content: space-evenly;
-    width: 100%;
-    max-width: 30em;
+    flex-direction: column;
+    justify-content: flex-end;
+    /* height: 7em; */
+    /* position: absolute;
+    bottom: 0%; */
+    
+}
+.header {
+    margin: .5em 0 0 0;
+}
+#choicesContainer {
+    background-color: gray;
+    border-radius: 10px;
+    height: 5em;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
     list-style: none;
     padding: 0;
+    margin-top: 0;
+    width: 30em;
 }
 .redCircle {
     height: 3em;
@@ -42,6 +61,7 @@ export default {
     border: 2px solid black;
     border-radius: 50%;
     background-color: red;
+    margin: 0 .5em;
 }
 
 .orangeCircle {
@@ -50,6 +70,7 @@ export default {
     border: 2px solid black;
     border-radius: 50%;
     background-color: orange;
+    margin: 0 .5em;
 }
 
 .yellowCircle {
@@ -58,6 +79,7 @@ export default {
     border: 2px solid black;
     border-radius: 50%;
     background-color: yellow;
+    margin: 0 .5em;
 }
 
 .greenCircle {
@@ -66,6 +88,7 @@ export default {
     border: 2px solid black;
     border-radius: 50%;
     background-color: green;
+    margin: 0 .5em;
 }
 
 .blueCircle {
@@ -74,19 +97,24 @@ export default {
     border: 2px solid black;
     border-radius: 50%;
     background-color: blue;
+    margin: 0 .5em;
 }
+
 .indigoCircle {
     height: 3em;
     width: 3em;
     border: 2px solid black;
     border-radius: 50%;
     background-color: indigo;
+    margin: 0 .5em;
 }
+
 .violetCircle {
     height: 3em;
     width: 3em;
     border: 2px solid black;
     border-radius: 50%;
     background-color: violet;
+    margin: 0 .5em;
 }
 </style>

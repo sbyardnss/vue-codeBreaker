@@ -2,6 +2,7 @@
 import Attempts from './components/Attempts.vue'
 import CodeInput from './components/CodeInput.vue';
 import CurrentAttempt from './components/CurrentAttempt.vue';
+import HeaderBar from './components/HeaderBar.vue';
 import { reactive, ref } from 'vue';
 import type { Ref } from 'vue';
 const attemptsForListComponent: Ref<string[][]> = ref([])
@@ -27,13 +28,20 @@ function handleColorRemoved(index: number) {
 }
 </script>
 <template>
-  <h1 :class="[$style.header]">Hello World</h1>
-  <Attempts :attemptedCodes="attemptsForListComponent" :getClass="getClass" />
-  <CurrentAttempt :currentCodeAttempt="currentAttempt" :getClass="getClass" @colorRemoved="handleColorRemoved" />
-  <CodeInput :getClass="getClass" @colorAdded="handleCurrentCodeUpdated" />
+  <!-- <h1 :class="[$style.header]">Hello World</h1> -->
+  <main :id="$style.appContainer">
+    <HeaderBar />
+    <Attempts :attemptedCodes="attemptsForListComponent" :getClass="getClass" />
+    <CurrentAttempt :currentCodeAttempt="currentAttempt" :getClass="getClass" @colorRemoved="handleColorRemoved" />
+    <CodeInput :getClass="getClass" @colorAdded="handleCurrentCodeUpdated" />
+  </main>
 </template>
 <style module>
 .header {
   color: blue;
+}
+#appContainer {
+  display: flex;
+  flex-direction: column;
 }
 </style>
