@@ -7,13 +7,18 @@ export default {
         attemptedCodes: {
             type: Array as PropType<string[][]>,
             required: true
+        },
+        getClass: {
+            type: Function,
+            required: true
         }
-    },
-    methods: {
-        getClass(color: string): string {
-            return `${color}Circle`
-        }
+        
     }
+    // methods: {
+    //     getClass(color: string): string {
+    //         return `${color}Circle`
+    //     }
+    // }
 
 }
 interface AttemptedCodes {
@@ -31,7 +36,7 @@ interface AttemptedCodes {
 <style module>
 #attemptListContainer {
     background-color: gray;
-    height: 80vh;
+    height: 70vh;
 }
 
 #attemptList {
@@ -41,44 +46,56 @@ interface AttemptedCodes {
 }
 
 .redCircle {
-    height: 2em;
-    width: 2em;
+    height: 3em;
+    width: 3em;
+    border: 2px solid black;
     border-radius: 50%;
     background-color: red;
 }
 
-.blackCircle {
-    height: 2em;
-    width: 2em;
-    border-radius: 50%;
-    background-color: black;
-}
-
-.blueCircle {
-    height: 2em;
-    width: 2em;
-    border-radius: 50%;
-    background-color: blue;
-}
-
-.purpleCircle {
-    height: 2em;
-    width: 2em;
-    border-radius: 50%;
-    background-color: purple;
-}
-
 .orangeCircle {
-    height: 2em;
-    width: 2em;
+    height: 3em;
+    width: 3em;
+    border: 2px solid black;
     border-radius: 50%;
     background-color: orange;
 }
 
+.yellowCircle {
+    height: 3em;
+    width: 3em;
+    border: 2px solid black;
+    border-radius: 50%;
+    background-color: yellow;
+}
+
 .greenCircle {
-    height: 2em;
-    width: 2em;
+    height: 3em;
+    width: 3em;
+    border: 2px solid black;
     border-radius: 50%;
     background-color: green;
+}
+
+.blueCircle {
+    height: 3em;
+    width: 3em;
+    border: 2px solid black;
+    border-radius: 50%;
+    background-color: blue;
+}
+.indigoCircle {
+    height: 3em;
+    width: 3em;
+    border: 2px solid black;
+    border-radius: 50%;
+    background-color: indigo;
+}
+.violetCircle {
+    height: 3em;
+    width: 3em;
+    border: 2px solid black;
+    border-radius: 50%;
+    background-color: violet;
 }
 </style>
