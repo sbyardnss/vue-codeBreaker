@@ -31,14 +31,19 @@ interface AttemptedCodes {
 #attemptListContainer {
     background-color: gray;
     height: 60vh;
-    max-width: 30em;
+    width: 22em;
     border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 #attemptList {
     list-style: none;
     display: flex;
-    width: 100%;
+    padding: 0;
+    /* width: 100%; */
+    margin: .5em 0 0 0;
 }
 
 .redCircle {
@@ -47,6 +52,7 @@ interface AttemptedCodes {
     border: 2px solid black;
     border-radius: 50%;
     background-color: red;
+    margin: 0 .5em;
 }
 
 .orangeCircle {
@@ -55,6 +61,7 @@ interface AttemptedCodes {
     border: 2px solid black;
     border-radius: 50%;
     background-color: orange;
+    margin: 0 .5em;
 }
 
 .yellowCircle {
@@ -63,6 +70,7 @@ interface AttemptedCodes {
     border: 2px solid black;
     border-radius: 50%;
     background-color: yellow;
+    margin: 0 .5em;
 }
 
 .greenCircle {
@@ -71,6 +79,7 @@ interface AttemptedCodes {
     border: 2px solid black;
     border-radius: 50%;
     background-color: green;
+    margin: 0 .5em;
 }
 
 .blueCircle {
@@ -79,6 +88,7 @@ interface AttemptedCodes {
     border: 2px solid black;
     border-radius: 50%;
     background-color: blue;
+    margin: 0 .5em;
 }
 .indigoCircle {
     height: 3em;
@@ -86,6 +96,7 @@ interface AttemptedCodes {
     border: 2px solid black;
     border-radius: 50%;
     background-color: indigo;
+    margin: 0 .5em;
 }
 .violetCircle {
     height: 3em;
@@ -93,5 +104,6 @@ interface AttemptedCodes {
     border: 2px solid black;
     border-radius: 50%;
     background-color: violet;
+    margin: 0 .5em;
 }
 </style>
