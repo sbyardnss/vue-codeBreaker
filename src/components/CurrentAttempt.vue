@@ -48,7 +48,7 @@ export default {
     list-style: none;
     padding: 0;
     margin-top: 0;
-    width: 22em;
+    width: 18em;
 }
 
 .redCircle {

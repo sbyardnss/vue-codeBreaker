@@ -31,7 +31,7 @@ interface AttemptedCodes {
 #attemptListContainer {
     background-color: gray;
     height: 60vh;
-    width: 22em;
+    width: 18em;
     border-radius: 10px;
     display: flex;
     flex-direction: column;

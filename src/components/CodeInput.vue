@@ -7,13 +7,17 @@ export default {
         getClass: {
             type: Function,
             required: true
-        }
+        },
+        colorChoices: {
+            type: Array as PropType<string[]>,
+            required: true
+        },
     },
-    data() {
-        return {
-            colorChoices: ['red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'violet']
-        }
-    },
+    // data() {
+    //     return {
+    //         colorChoices: ['red', 'orange', 'yellow', 'green', 'blue', 'violet']
+    //     }
+    // },
     methods: {
         handleColorClicked(color: string) {
             this.$emit("colorAdded", color)
@@ -53,7 +57,7 @@ export default {
     list-style: none;
     padding: 0;
     margin-top: 0;
-    width: 30em;
+    width: 25.5em;
 }
 .redCircle {
     height: 3em;
