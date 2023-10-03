@@ -8,21 +8,23 @@ import type { Ref } from 'vue';
 const attemptsForListComponent: Ref<string[][]> = ref([])
 let currentAttempt: Ref<string[]> = ref([])
 const appColorChoices = ['red', 'orange', 'yellow', 'green', 'blue', 'violet']
+let availableColorChoices: Ref<string[]> = ref([])
 let correctCode: Ref<string[]> = ref([])
 let solved: Ref<boolean> = ref(false)
 function createNewCode() {
   const newCode: string[] = []
   // newCode.push('bill')
+  const copyColorChoices = [...appColorChoices]
   for (let i = 0; i < 4; i++) {
-    const randomIndex = Math.floor(Math.random()*6)
-    const selectedColor = appColorChoices[randomIndex]
+    const randomIndex = Math.floor(Math.random() * copyColorChoices.length)
+    const selectedColor = copyColorChoices.splice(randomIndex, 1)[0]
     newCode.push(selectedColor)
   }
   correctCode.value = newCode
 }
 onMounted(() => {
   createNewCode()
-  console.log(correctCode.value)
+  availableColorChoices.value = [...appColorChoices]
 })
 function getClass(color: string): string {
   return `${color}Circle`
@@ -35,22 +37,40 @@ function checkIfNewCodeIsCorrect(code: string[]) {
   }
 
 }
-function handleCurrentCodeUpdated(color: string) {
+
+//add colors to current attempt
+function handleCurrentCodeUpdated(addedColor: string) {
   if (currentAttempt.value.indexOf("blank") !== -1) {
     const blankIndex = currentAttempt.value.indexOf("blank")
-    currentAttempt.value.splice(blankIndex, 1, color)
+    currentAttempt.value.splice(blankIndex, 1, addedColor)
   }
   else {
-    currentAttempt.value.push(color)
+    currentAttempt.value.push(addedColor)
   }
+  const indexOfAddedColor = availableColorChoices.value.indexOf(addedColor)
+  availableColorChoices.value.splice(indexOfAddedColor, 1, "blank")
+
   if (currentAttempt.value.filter(a => a !== "blank").length === 4) {
     checkIfNewCodeIsCorrect(currentAttempt.value)
     attemptsForListComponent.value.push([...currentAttempt.value]);
     currentAttempt.value.splice(0, currentAttempt.value.length)
+    availableColorChoices.value = [...appColorChoices]
+
   }
+
 }
-function handleColorRemoved(index: number) {
-  currentAttempt.value.splice(index, 1, "blank")
+
+//remove colors from current attempt
+function handleColorRemoved(removedColor: string) {
+  const colorIndex = currentAttempt.value.indexOf(removedColor)
+  if (currentAttempt.value.length > 1) {
+    currentAttempt.value.splice(colorIndex, 1, "blank")
+  }
+  else {
+    currentAttempt.value.splice(colorIndex, 1)
+  }
+  const indexOfColorInAppChoices = appColorChoices.indexOf(removedColor)
+  availableColorChoices.value.splice(indexOfColorInAppChoices, 1, removedColor)
 }
 
 </script>
@@ -60,7 +80,7 @@ function handleColorRemoved(index: number) {
     <HeaderBar />
     <Attempts :attemptedCodes="attemptsForListComponent" :getClass="getClass" />
     <CurrentAttempt :currentCodeAttempt="currentAttempt" :getClass="getClass" @colorRemoved="handleColorRemoved" />
-    <CodeInput :getClass="getClass" :colorChoices="appColorChoices" @colorAdded="handleCurrentCodeUpdated" />
+    <CodeInput :getClass="getClass" :colorChoices="availableColorChoices" @colorAdded="handleCurrentCodeUpdated" />
   </main>
 </template>
 <style module>
@@ -71,5 +91,7 @@ function handleColorRemoved(index: number) {
 #appContainer {
   display: flex;
   flex-direction: column;
+  border: 1px solid black;
+  width: fit-content
 }
 </style>

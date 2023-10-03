@@ -15,13 +15,13 @@ export default {
     },
     // data() {
     //     return {
-    //         colorChoices: ['red', 'orange', 'yellow', 'green', 'blue', 'violet']
+    //         availableColorChoices
     //     }
     // },
     methods: {
         handleColorClicked(color: string) {
             this.$emit("colorAdded", color)
-        } 
+        }
     }
 }
 </script>
@@ -42,11 +42,13 @@ export default {
     /* height: 7em; */
     /* position: absolute;
     bottom: 0%; */
-    
+
 }
+
 .header {
     margin: .5em 0 0 0;
 }
+
 #choicesContainer {
     background-color: gray;
     border-radius: 10px;
@@ -56,9 +58,10 @@ export default {
     align-items: center;
     list-style: none;
     padding: 0;
-    margin-top: 0;
+    margin: 0;
     width: 25.5em;
 }
+
 .redCircle {
     height: 3em;
     width: 3em;
@@ -121,4 +124,14 @@ export default {
     background-color: violet;
     margin: 0 .5em;
 }
-</style>
+
+.blankCircle {
+    height: 3em;
+    width: 3em;
+    border: 2px solid rgb(196, 196, 196);
+    border-radius: 50%;
+    background-color: rgb(138, 138, 138);
+    margin: 0 .5em;
+    box-shadow: rgb(196, 196, 196) 0 1px 10px inset;
+
+}</style>

@@ -14,8 +14,8 @@ export default {
         }
     },
     methods: {
-        emitRemoveColor(index: number) {
-            this.$emit("colorRemoved", index)
+        emitRemoveColor(color: string) {
+            this.$emit("colorRemoved", color)
         }
     }
 }
@@ -24,7 +24,8 @@ export default {
     <div :id="$style.currentAttemptContainer">
         <h3 :class="[$style.header]">current attempt</h3>
         <ul :id=$style.currentAttemptDisplay>
-            <li v-for="(color, index) in currentCodeAttempt" :class="$style[getClass(color)]" @click="emitRemoveColor(index)"></li>
+            <li v-for="(color, index) in currentCodeAttempt" :class="$style[getClass(color)]"
+                @click="emitRemoveColor(color)"></li>
         </ul>
     </div>
 </template>
@@ -32,12 +33,14 @@ export default {
 .header {
     margin: .5em 0 0 0;
 }
+
 #currentAttemptContainer {
     margin-top: 1em;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
 }
+
 #currentAttemptDisplay {
     background-color: gray;
     border-radius: 10px;
@@ -113,14 +116,14 @@ export default {
     background-color: violet;
     margin: 0 .5em;
 }
+
 .blankCircle {
     height: 3em;
     width: 3em;
-    border: 2px solid lightgray;
+    border: 2px solid rgb(196, 196, 196);
     border-radius: 50%;
-    background-color: lightgray;
+    background-color: rgb(138, 138, 138);
     margin: 0 .5em;
-    box-shadow: rgba(255, 255, 255 ) 0 1px 10px inset;
+    box-shadow: rgb(196, 196, 196) 0 1px 10px inset;
 
-}
-</style>
+}</style>
