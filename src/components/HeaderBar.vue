@@ -1,15 +1,28 @@
 <script lang="ts">
 export default {
-    name: "HeaderBar"
+    name: "HeaderBar",
+    emits: ["refreshClicked"],
+    props: {
+        codeSolved: {
+            type: Boolean,
+            required: true
+        }
+    },
+    methods: {
+        handleRefreshClicked() {
+            this.$emit("refreshClicked")
+        }
+    }
 }
 </script>
 <template>
     <section :id="$style.headerContainer">
         <div :id="$style.frontHeaderCard">
-            <h2>Mastermind</h2>
+            <h2 v-if="!codeSolved">Mastermind</h2>
+            <div v-else>solved</div>
         </div>
         <div :id="$style.refreshButtonContainer">
-            <button :id="$style.refreshButton">Refresh</button>
+            <button :id="$style.refreshButton" @click="handleRefreshClicked()">Refresh</button>
         </div>
     </section>
 </template>

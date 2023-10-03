@@ -5,7 +5,7 @@ import CurrentAttempt from './components/CurrentAttempt.vue';
 import HeaderBar from './components/HeaderBar.vue';
 import { reactive, ref, onMounted } from 'vue';
 import type { Ref } from 'vue';
-const attemptsForListComponent: Ref<string[][]> = ref([])
+let attemptsForListComponent: Ref<string[][]> = ref([])
 let currentAttempt: Ref<string[]> = ref([])
 const appColorChoices = ['red', 'orange', 'yellow', 'green', 'blue', 'violet']
 let availableColorChoices: Ref<string[]> = ref([])
@@ -25,7 +25,17 @@ function createNewCode() {
 onMounted(() => {
   createNewCode()
   availableColorChoices.value = [...appColorChoices]
+  console.log(correctCode.value)
+
 })
+function refreshCode() {
+  createNewCode()
+  availableColorChoices.value = [...appColorChoices]
+  attemptsForListComponent.value = []
+  currentAttempt.value = []
+  solved.value = false
+  console.log(correctCode.value)
+}
 function getClass(color: string): string {
   return `${color}Circle`
 }
@@ -34,6 +44,7 @@ function checkIfNewCodeIsCorrect(code: string[]) {
   const correctCodeString = correctCode.value.toString()
   if (codeString === correctCodeString) {
     solved.value = true
+    console.log('solved')
   }
 
 }
@@ -77,7 +88,7 @@ function handleColorRemoved(removedColor: string) {
 <template>
   <!-- <h1 :class="[$style.header]">Hello World</h1> -->
   <main :id="$style.appContainer">
-    <HeaderBar />
+    <HeaderBar :codeSolved="solved" @refreshClicked="refreshCode"/>
     <Attempts :attemptedCodes="attemptsForListComponent" :getClass="getClass" />
     <CurrentAttempt :currentCodeAttempt="currentAttempt" :getClass="getClass" @colorRemoved="handleColorRemoved" />
     <CodeInput :getClass="getClass" :colorChoices="availableColorChoices" @colorAdded="handleCurrentCodeUpdated" />
