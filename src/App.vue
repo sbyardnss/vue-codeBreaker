@@ -88,7 +88,7 @@ function handleColorRemoved(removedColor: string) {
 <template>
   <!-- <h1 :class="[$style.header]">Hello World</h1> -->
   <main :id="$style.appContainer">
-    <HeaderBar :codeSolved="solved" @refreshClicked="refreshCode"/>
+    <HeaderBar :codeSolved="solved" :correctCodeForDisplay="correctCode" :getClass="getClass" @refreshClicked="refreshCode"/>
     <Attempts :attemptedCodes="attemptsForListComponent" :getClass="getClass" />
     <CurrentAttempt :currentCodeAttempt="currentAttempt" :getClass="getClass" @colorRemoved="handleColorRemoved" />
     <CodeInput :getClass="getClass" :colorChoices="availableColorChoices" @colorAdded="handleCurrentCodeUpdated" />
@@ -105,4 +105,5 @@ function handleColorRemoved(removedColor: string) {
   border: 1px solid black;
   width: fit-content
 }
+
 </style>

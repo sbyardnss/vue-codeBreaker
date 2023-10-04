@@ -24,7 +24,7 @@ export default {
     <div :id="$style.currentAttemptContainer">
         <h3 :class="[$style.header]">current attempt</h3>
         <ul :id=$style.currentAttemptDisplay>
-            <li v-for="(color, index) in currentCodeAttempt" :class="$style[getClass(color)]"
+            <li v-for="(color) in currentCodeAttempt" :class="$style[getClass(color)]"
                 @click="emitRemoveColor(color)"></li>
         </ul>
     </div>
