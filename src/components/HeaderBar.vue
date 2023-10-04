@@ -61,13 +61,11 @@ export default {
 
 #flipCardContainer {
     width: 20em;
-    /* height: 400px; */
-    /* perspective: 1000px; */
     z-index: 10;
 }
 
 #refreshButton {
-    height: 5em;
+    height: 6em;
     width: 6.6em;
     background-color: white;
     border: 2px solid gray;
