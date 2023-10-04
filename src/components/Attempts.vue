@@ -1,5 +1,6 @@
 <script lang="ts">
 import type { PropType } from 'vue';
+import AccuracyCountVue from './AccuracyCount.vue';
 
 export default {
     name: "Attempts",
@@ -11,9 +12,13 @@ export default {
         getClass: {
             type: Function,
             required: true
+        },
+        correctCodeForReference: {
+            type: Array as PropType<string[]>,
+            required: true
         }
-        
-    }
+    },
+    components: { AccuracyCountVue }
 }
 interface AttemptedCodes {
     attemptedCodes: string[][];
@@ -22,28 +27,59 @@ interface AttemptedCodes {
 <template>
     <!-- <h2>here are your attempts</h2> -->
     <div :id=$style.attemptListContainer>
-        <ul :id=$style.attemptList v-for="list in attemptedCodes">
-            <li v-for="color in list" :class="$style[getClass(color)]"></li>
-        </ul>
+        <div :id=$style.attemptListWithAccuracy v-for="list in attemptedCodes">
+            <ul :class="$style['attemptList']">
+                <li v-for="color in list" :class="$style[getClass(color)]"></li>
+            </ul>
+            <div :id="$style.accuracyContainer">
+                <AccuracyCountVue :attempt="list" :correctCode="correctCodeForReference" />
+            </div>
+        </div>
     </div>
 </template>
 <style module>
 #attemptListContainer {
-    background-color: gray;
+    background-color: lightgray;
     height: 60vh;
-    width: 20em;
+    width: 25.5em;
     border-radius: 10px;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-#attemptList {
-    list-style: none;
+#attemptListWithAccuracy {
     display: flex;
+    width: 100%;
+    height: 4em;
+    justify-content: space-evenly;
+    align-items: center;
+    margin-top: .5em;
+}
+
+.attemptList {
+    list-style: none;
+    background-color: gray;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     padding: 0;
-    /* width: 100%; */
-    margin: .5em 0 0 0;
+    width: 75%;
+    height: 100%;
+    /* margin: .5em 0 0 0; */
+
+}
+
+#accuracyContainer {
+    /* display: flex; */
+    width: 20%;
+    height: 100%;
+    /* margin: .5em; */
+    border: 1px solid gray;
+    background-color: lightgray;
+    border-radius: 8px;
+    justify-self: flex-end;
 }
 
 .redCircle {
@@ -90,6 +126,7 @@ interface AttemptedCodes {
     background-color: blue;
     margin: 0 .5em;
 }
+
 .indigoCircle {
     height: 3em;
     width: 3em;
@@ -98,6 +135,7 @@ interface AttemptedCodes {
     background-color: indigo;
     margin: 0 .5em;
 }
+
 .violetCircle {
     height: 3em;
     width: 3em;
