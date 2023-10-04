@@ -1,66 +1,61 @@
 <script lang="ts">
 import type { PropType } from 'vue';
 export default {
-    name: "CodeInput",
-    emits: ["colorAdded"],
+    name: "CurrentAttempt",
+    emits: ["colorRemoved"],
     props: {
-        getClass: {
-            type: Function,
-            required: true
-        },
-        colorChoices: {
+        currentCodeAttempt: {
             type: Array as PropType<string[]>,
             required: true
         },
+        getClass: {
+            type: Function,
+            required: true
+        }
     },
-    // data() {
-    //     return {
-    //         availableColorChoices
-    //     }
-    // },
     methods: {
-        handleColorClicked(color: string) {
-            this.$emit("colorAdded", color)
+        emitRemoveColor(color: string) {
+            this.$emit("colorRemoved", color)
         }
     }
 }
 </script>
 <template>
-    <!-- <h2>here is where the user input will go</h2> -->
-    <div :id="$style.inputContainer">
-        <!-- <h3 :class="$style.header">select colors</h3> -->
-        <ul :id="$style.choicesContainer">
-            <li v-for="color of colorChoices" :class="$style[getClass(color)]" @click="handleColorClicked(color)"></li>
+    <div :id="$style.currentAttemptContainer">
+        <h3 :class="[$style.header]">current attempt</h3>
+        <ul :id=$style.currentAttemptDisplay>
+            <li v-for="(color) in currentCodeAttempt" :class="$style[getClass(color)]"
+                @click="emitRemoveColor(color)"></li>
         </ul>
     </div>
 </template>
 <style module>
-#inputContainer {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    /* height: 7em; */
-    /* position: absolute;
-    bottom: 0%; */
-    width: 100%;
-
-}
-
 .header {
-    margin: .5em 0 0 0;
+    margin: 0;
+    width: 22%;
 }
 
-#choicesContainer {
+#currentAttemptContainer {
+    /* margin-top: 1em; */
+    display: flex;
+    /* flex-direction: column; */
+    justify-content: space-evenly;
+    align-items: center;
+    margin: .5em .25em;
+    /* width: 90%;  */
+}
+
+#currentAttemptDisplay {
     background-color: gray;
     border-radius: 10px;
     height: 5em;
     display: flex;
-    justify-content: space-evenly;
+    justify-content: flex-start;
     align-items: center;
     list-style: none;
     padding: 0;
     margin: 0;
-    width: 100%;
+    width: 18em;
 }
 
 .redCircle {
