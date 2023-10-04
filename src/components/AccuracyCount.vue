@@ -85,6 +85,8 @@ export default {
     width: 1em;
     border-radius: 50%;
     margin: .25em .5em;
+    box-shadow: rgb(155, 155, 155) 0 1px 10px inset;
+
 }
 
 </style>

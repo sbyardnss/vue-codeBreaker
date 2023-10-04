@@ -25,7 +25,7 @@ function createNewCode() {
 onMounted(() => {
   createNewCode()
   availableColorChoices.value = [...appColorChoices]
-  console.log(correctCode.value)
+  // console.log(correctCode.value)
 
 })
 function refreshCode() {
@@ -34,7 +34,7 @@ function refreshCode() {
   attemptsForListComponent.value = []
   currentAttempt.value = []
   solved.value = false
-  console.log(correctCode.value)
+  // console.log(correctCode.value)
 }
 function getClass(color: string): string {
   return `${color}Circle`
