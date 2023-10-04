@@ -102,9 +102,13 @@ function handleColorRemoved(removedColor: string) {
 #appContainer {
   display: flex;
   flex-direction: column;
-  border: 1px solid black;
+  align-items: center;
+  /* border: 1px solid black; */
+  border: 2px solid gray;
+
   border-radius: 12px;
-  width: fit-content
+  width: fit-content;
+  margin: 0;
 }
 
 </style>

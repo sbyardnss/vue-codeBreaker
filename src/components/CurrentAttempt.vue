@@ -31,14 +31,18 @@ export default {
 </template>
 <style module>
 .header {
-    margin: .5em 0 0 0;
+    margin: 0;
+    width: 22%;
 }
 
 #currentAttemptContainer {
-    margin-top: 1em;
+    /* margin-top: 1em; */
     display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
+    /* flex-direction: column; */
+    justify-content: space-evenly;
+    align-items: center;
+    margin: .5em .25em;
+    /* width: 90%;  */
 }
 
 #currentAttemptDisplay {
@@ -50,7 +54,7 @@ export default {
     align-items: center;
     list-style: none;
     padding: 0;
-    margin-top: 0;
+    margin: 0;
     width: 18em;
 }
 

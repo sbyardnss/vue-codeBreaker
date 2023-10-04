@@ -65,7 +65,7 @@ export default {
 }
 
 #refreshButton {
-    height: 6em;
+    height: 5em;
     width: 6.6em;
     background-color: white;
     border: 2px solid gray;

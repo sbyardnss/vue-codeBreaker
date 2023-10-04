@@ -1,6 +1,7 @@
 <script lang="ts">
 import type { PropType } from 'vue';
 import AccuracyCountVue from './AccuracyCount.vue';
+import BlankAttempt from './BlankAttempt.vue';
 
 export default {
     name: "Attempts",
@@ -18,7 +19,7 @@ export default {
             required: true
         }
     },
-    components: { AccuracyCountVue }
+    components: { AccuracyCountVue, BlankAttempt }
 }
 interface AttemptedCodes {
     attemptedCodes: string[][];
@@ -35,12 +36,15 @@ interface AttemptedCodes {
                 <AccuracyCountVue :attempt="list" :correctCode="correctCodeForReference" />
             </div>
         </div>
+        <div :id="$style.attemptListWithAccuracy" v-for="n in 8 - attemptedCodes.length">
+            <BlankAttempt />
+        </div>
     </div>
 </template>
 <style module>
 #attemptListContainer {
     background-color: lightgray;
-    height: 60vh;
+    height: 68vh;
     width: 25.5em;
     border-radius: 10px;
     display: flex;
