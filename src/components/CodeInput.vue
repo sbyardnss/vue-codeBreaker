@@ -28,7 +28,7 @@ export default {
 <template>
     <!-- <h2>here is where the user input will go</h2> -->
     <div :id="$style.inputContainer">
-        <!-- <h3 :class="$style.header">select colors</h3> -->
+        <h3 :class="$style.header">select colors</h3>
         <ul :id="$style.choicesContainer">
             <li v-for="color of colorChoices" :class="$style[getClass(color)]" @click="handleColorClicked(color)"></li>
         </ul>

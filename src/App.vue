@@ -46,29 +46,38 @@ function checkIfNewCodeIsCorrect(code: string[]) {
     solved.value = true
     console.log('solved')
   }
+  else {
+    attemptsForListComponent.value.push([])
+  }
 
 }
-
-//add colors to current attempt
 function handleCurrentCodeUpdated(addedColor: string) {
-  if (currentAttempt.value.indexOf("blank") !== -1) {
-    const blankIndex = currentAttempt.value.indexOf("blank")
-    currentAttempt.value.splice(blankIndex, 1, addedColor)
+  const lastIndexOfAttempts = attemptsForListComponent.value.length - 1
+  //checking to see if blank input needs replacing
+  if (!solved.value) {
+    if (currentAttempt.value.indexOf("blank") !== -1) {
+      const blankIndex = currentAttempt.value.indexOf("blank")
+      currentAttempt.value.splice(blankIndex, 1, addedColor)
+    }
+    //if no blank, simply pushing into current attempt
+    else {
+      currentAttempt.value.push(addedColor)
+    }
+    //if current attempt length less than 4, replace last element in attempts with current attempt
+    if (currentAttempt.value.length < 4) {
+      attemptsForListComponent.value.splice(lastIndexOfAttempts, 1, currentAttempt.value)
+      //removing addedColor from choices
+      const indexOfAddedColor = availableColorChoices.value.indexOf(addedColor)
+      availableColorChoices.value.splice(indexOfAddedColor, 1, "blank")
+    }
+    //if 4, checking code and replacing last element in attempts with current attempt
+    else {
+      checkIfNewCodeIsCorrect(currentAttempt.value)
+      attemptsForListComponent.value.splice(lastIndexOfAttempts, 1, currentAttempt.value)
+      availableColorChoices.value = [...appColorChoices]
+      currentAttempt.value = []
+    }
   }
-  else {
-    currentAttempt.value.push(addedColor)
-  }
-  const indexOfAddedColor = availableColorChoices.value.indexOf(addedColor)
-  availableColorChoices.value.splice(indexOfAddedColor, 1, "blank")
-
-  if (currentAttempt.value.filter(a => a !== "blank").length === 4) {
-    checkIfNewCodeIsCorrect(currentAttempt.value)
-    attemptsForListComponent.value.push([...currentAttempt.value]);
-    currentAttempt.value.splice(0, currentAttempt.value.length)
-    availableColorChoices.value = [...appColorChoices]
-
-  }
-
 }
 
 //remove colors from current attempt
@@ -88,9 +97,11 @@ function handleColorRemoved(removedColor: string) {
 <template>
   <!-- <h1 :class="[$style.header]">Hello World</h1> -->
   <main :id="$style.appContainer">
-    <HeaderBar :codeSolved="solved" :correctCodeForDisplay="correctCode" :getClass="getClass" @refreshClicked="refreshCode"/>
-    <Attempts :attemptedCodes="attemptsForListComponent" :getClass="getClass" :correctCodeForReference="correctCode"/>
-    <CurrentAttempt :currentCodeAttempt="currentAttempt" :getClass="getClass" @colorRemoved="handleColorRemoved" />
+    <HeaderBar :codeSolved="solved" :correctCodeForDisplay="correctCode" :getClass="getClass"
+      @refreshClicked="refreshCode" />
+    <Attempts :attemptedCodes="attemptsForListComponent" :getClass="getClass" :correctCodeForReference="correctCode"
+      @colorRemoved="handleColorRemoved" />
+    <!-- <CurrentAttempt :currentCodeAttempt="currentAttempt" :getClass="getClass" @colorRemoved="handleColorRemoved" /> -->
     <CodeInput :getClass="getClass" :colorChoices="availableColorChoices" @colorAdded="handleCurrentCodeUpdated" />
   </main>
 </template>
@@ -110,5 +121,4 @@ function handleColorRemoved(removedColor: string) {
   width: fit-content;
   margin: 0;
 }
-
 </style>

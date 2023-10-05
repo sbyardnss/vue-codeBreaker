@@ -19,6 +19,11 @@ export default {
             required: true
         }
     },
+    methods: {
+        emitRemoveColor(color: string) {
+            this.$emit("colorRemoved", color)
+        }
+    },
     components: { AccuracyCountVue, BlankAttempt }
 }
 interface AttemptedCodes {
@@ -30,7 +35,8 @@ interface AttemptedCodes {
     <div :id=$style.attemptListContainer>
         <div :id=$style.attemptListWithAccuracy v-for="list in attemptedCodes">
             <ul :class="$style['attemptList']">
-                <li v-for="color in list" :class="$style[getClass(color)]"></li>
+                <li v-for="color in list" :class="$style[getClass(color)]" @click="emitRemoveColor(color)"></li>
+                <li v-if="list.length < 4" v-for="n in 4-list.length" :class="$style.blankCircle"></li>
             </ul>
             <div :id="$style.accuracyContainer">
                 <AccuracyCountVue :attempt="list" :correctCode="correctCodeForReference" />
@@ -147,5 +153,15 @@ interface AttemptedCodes {
     border-radius: 50%;
     background-color: violet;
     margin: 0 .5em;
+}
+.blankCircle {
+    height: 3em;
+    width: 3em;
+    border: 2px solid rgb(196, 196, 196);
+    border-radius: 50%;
+    background-color: rgb(138, 138, 138);
+    margin: 0 .5em;
+    box-shadow: rgb(196, 196, 196) 0 1px 10px inset;
+
 }
 </style>

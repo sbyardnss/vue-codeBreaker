@@ -49,7 +49,7 @@ export default {
 }
 </script>
 <template>
-    <div :id="$style.accuracyFlex">
+    <div :id="$style.accuracyFlex" v-if="attempt.length === 4">
         <span v-for="n in accuracyCounts.correctPlaceAndColorCount" :class="$style.correctPlaceAndColor"></span>
         <span v-for="n in accuracyCounts.correctColorOnlyCount" :class="$style.correctColorOnly"></span>
         <span v-for="n in accuracyCounts.entirelyIncorrect" :class="$style.incorrect"></span>
