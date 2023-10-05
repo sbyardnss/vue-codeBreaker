@@ -42,7 +42,7 @@ export default {
 }
 
 #choicesContainer {
-    background-color: gray;
+    background-color: lightgray;
     border-radius: 10px;
     height: 5em;
     display: flex;
