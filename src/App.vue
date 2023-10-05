@@ -1,9 +1,8 @@
 <script setup lang="ts">
 import Attempts from './components/Attempts.vue'
 import CodeInput from './components/CodeInput.vue';
-import CurrentAttempt from './components/CurrentAttempt.vue';
 import HeaderBar from './components/HeaderBar.vue';
-import { reactive, ref, onMounted } from 'vue';
+import { ref, onMounted } from 'vue';
 import type { Ref } from 'vue';
 let attemptsForListComponent: Ref<string[][]> = ref([])
 let currentAttempt: Ref<string[]> = ref([])
@@ -13,7 +12,6 @@ let correctCode: Ref<string[]> = ref([])
 let solved: Ref<boolean> = ref(false)
 function createNewCode() {
   const newCode: string[] = []
-  // newCode.push('bill')
   const copyColorChoices = [...appColorChoices]
   for (let i = 0; i < 4; i++) {
     const randomIndex = Math.floor(Math.random() * copyColorChoices.length)
@@ -25,8 +23,7 @@ function createNewCode() {
 onMounted(() => {
   createNewCode()
   availableColorChoices.value = [...appColorChoices]
-  // console.log(correctCode.value)
-
+  console.log(correctCode.value)
 })
 function refreshCode() {
   createNewCode()
@@ -34,7 +31,6 @@ function refreshCode() {
   attemptsForListComponent.value = []
   currentAttempt.value = []
   solved.value = false
-  // console.log(correctCode.value)
 }
 function getClass(color: string): string {
   return `${color}Circle`
@@ -44,7 +40,6 @@ function checkIfNewCodeIsCorrect(code: string[]) {
   const correctCodeString = correctCode.value.toString()
   if (codeString === correctCodeString) {
     solved.value = true
-    console.log('solved')
   }
   else {
     attemptsForListComponent.value.push([])
@@ -95,13 +90,11 @@ function handleColorRemoved(removedColor: string) {
 
 </script>
 <template>
-  <!-- <h1 :class="[$style.header]">Hello World</h1> -->
   <main :id="$style.appContainer">
     <HeaderBar :codeSolved="solved" :correctCodeForDisplay="correctCode" :getClass="getClass"
       @refreshClicked="refreshCode" />
     <Attempts :attemptedCodes="attemptsForListComponent" :getClass="getClass" :correctCodeForReference="correctCode"
       @colorRemoved="handleColorRemoved" />
-    <!-- <CurrentAttempt :currentCodeAttempt="currentAttempt" :getClass="getClass" @colorRemoved="handleColorRemoved" /> -->
     <CodeInput :getClass="getClass" :colorChoices="availableColorChoices" @colorAdded="handleCurrentCodeUpdated" />
   </main>
 </template>
@@ -114,7 +107,6 @@ function handleColorRemoved(removedColor: string) {
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* border: 1px solid black; */
   border: 2px solid gray;
 
   border-radius: 12px;

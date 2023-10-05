@@ -8,7 +8,6 @@ export default {
             <li v-for="n in 4" :class="$style['blankCircle']"></li>
         </ul>
         <div :id="$style.accuracyContainer">
-            <!-- <AccuracyCountVue :attempt="list" :correctCode="correctCodeForReference" /> -->
         </div>
 </template>
 <style module>
@@ -31,15 +30,12 @@ export default {
     padding: 0;
     width: 75%;
     height: 100%;
-    /* margin: .5em 0 0 0; */
 
 }
 
 #accuracyContainer {
-    /* display: flex; */
     width: 20%;
     height: 100%;
-    /* margin: .5em; */
     border: 1px solid gray;
     background-color: lightgray;
     border-radius: 8px;

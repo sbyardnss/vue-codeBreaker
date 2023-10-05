@@ -81,7 +81,6 @@ export default {
     align-items: center;
     list-style: none;
     padding: 0;
-    /* margin-top: 0; */
     margin: 0;
     width: 18em;
 }
@@ -115,7 +114,6 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
-    /* border-radius: 0.5rem; */
 }
 
 .flipCardFront {
@@ -133,7 +131,6 @@ export default {
 .flipCardFront img {
     width: 100%;
     height: 100%;
-    /* border-radius: 0.5rem; */
 }
 
 .flipCardBack p {

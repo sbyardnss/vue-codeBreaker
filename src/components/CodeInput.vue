@@ -13,11 +13,6 @@ export default {
             required: true
         },
     },
-    // data() {
-    //     return {
-    //         availableColorChoices
-    //     }
-    // },
     methods: {
         handleColorClicked(color: string) {
             this.$emit("colorAdded", color)
@@ -26,7 +21,6 @@ export default {
 }
 </script>
 <template>
-    <!-- <h2>here is where the user input will go</h2> -->
     <div :id="$style.inputContainer">
         <h3 :class="$style.header">select colors</h3>
         <ul :id="$style.choicesContainer">
@@ -39,9 +33,6 @@ export default {
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
-    /* height: 7em; */
-    /* position: absolute;
-    bottom: 0%; */
     width: 100%;
 
 }

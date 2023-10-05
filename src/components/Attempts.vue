@@ -26,17 +26,16 @@ export default {
     },
     components: { AccuracyCountVue, BlankAttempt }
 }
-interface AttemptedCodes {
-    attemptedCodes: string[][];
-} 
+// interface AttemptedCodes {
+//     attemptedCodes: string[][];
+// } 
 </script>
 <template>
-    <!-- <h2>here are your attempts</h2> -->
     <div :id=$style.attemptListContainer>
         <div :id=$style.attemptListWithAccuracy v-for="list in attemptedCodes">
             <ul :class="$style['attemptList']">
                 <li v-for="color in list" :class="$style[getClass(color)]" @click="emitRemoveColor(color)"></li>
-                <li v-if="list.length < 4" v-for="n in 4-list.length" :class="$style.blankCircle"></li>
+                <li v-if="list.length < 4" v-for="n in 4 - list.length" :class="$style.blankCircle"></li>
             </ul>
             <div :id="$style.accuracyContainer">
                 <AccuracyCountVue :attempt="list" :correctCode="correctCodeForReference" />
@@ -50,7 +49,7 @@ interface AttemptedCodes {
 <style module>
 #attemptListContainer {
     background-color: lightgray;
-    height: 68vh;
+    height: 36.5em;
     width: 25.5em;
     border-radius: 10px;
     display: flex;
@@ -77,15 +76,12 @@ interface AttemptedCodes {
     padding: 0;
     width: 75%;
     height: 100%;
-    /* margin: .5em 0 0 0; */
 
 }
 
 #accuracyContainer {
-    /* display: flex; */
     width: 20%;
     height: 100%;
-    /* margin: .5em; */
     border: 1px solid gray;
     background-color: lightgray;
     border-radius: 8px;
@@ -154,6 +150,7 @@ interface AttemptedCodes {
     background-color: violet;
     margin: 0 .5em;
 }
+
 .blankCircle {
     height: 3em;
     width: 3em;
@@ -162,6 +159,5 @@ interface AttemptedCodes {
     background-color: rgb(138, 138, 138);
     margin: 0 .5em;
     box-shadow: rgb(196, 196, 196) 0 1px 10px inset;
-
 }
 </style>
