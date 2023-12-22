@@ -1,5 +1,6 @@
 <script lang="ts">
 import type { PropType } from 'vue';
+import '@/assets/color-nodes.css'
 
 export default {
     name: "HeaderBar",
@@ -42,7 +43,7 @@ export default {
                 <!-- flip card back -->
                 <div :class="$style['flipCardBack']">
                     <ul :class="$style['correctCodeDisplay']" v-if="codeSolved">
-                        <li v-for="(color) in correctCodeForDisplay" :class="$style[getClass(color)]"></li>
+                        <li :key="color" v-for="(color) in correctCodeForDisplay" :class="$style[getClass(color)]"></li>
                     </ul>
                 </div>
             </div>
@@ -56,7 +57,10 @@ export default {
 #headerContainer {
     display: flex;
     align-items: center;
-    height: 5em;
+    /* height: 5em; */
+    height: 10%;
+    width: 98%;
+    margin: .25em 0;
 }
 
 #flipCardContainer {
@@ -148,7 +152,7 @@ export default {
     margin-top: 1.25rem;
 }
 
-.redCircle {
+/* .redCircle {
     height: 3em;
     width: 3em;
     border: 2px solid black;
@@ -209,5 +213,5 @@ export default {
     border-radius: 50%;
     background-color: violet;
     margin: 0 .5em;
-}
+} */
 </style>

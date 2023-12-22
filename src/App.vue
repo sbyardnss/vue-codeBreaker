@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import Attempts from './components/Attempts.vue'
+import AttemptList from './components/Attempts.vue'
 import CodeInput from './components/CodeInput.vue';
 import HeaderBar from './components/HeaderBar.vue';
 import { ref, onMounted } from 'vue';
@@ -93,10 +93,11 @@ function handleColorRemoved(removedColor: string) {
   <main :id="$style.appContainer">
     <HeaderBar :codeSolved="solved" :correctCodeForDisplay="correctCode" :getClass="getClass"
       @refreshClicked="refreshCode" />
-    <Attempts :attemptedCodes="attemptsForListComponent" :getClass="getClass" :correctCodeForReference="correctCode"
+    <AttemptList :attemptedCodes="attemptsForListComponent" :getClass="getClass" :correctCodeForReference="correctCode"
       @colorRemoved="handleColorRemoved" />
     <CodeInput :getClass="getClass" :colorChoices="availableColorChoices" @colorAdded="handleCurrentCodeUpdated" />
   </main>
+  
 </template>
 <style module>
 .header {
@@ -110,7 +111,15 @@ function handleColorRemoved(removedColor: string) {
   border: 2px solid gray;
 
   border-radius: 12px;
-  width: fit-content;
+  /* width: 98vw;
+  max-width: 26em;
+  height: 98vh;
+  max-height: 48em; */
   margin: 0;
+  width: 96vw; 
+  height: calc(96vw * 16 / 7); /* For an aspect ratio of 16:9 */
+  max-height: 96vh;
+  max-width: calc(96vh * 7 / 16); /* For an aspect ratio of 16:9 */
 }
+
 </style>

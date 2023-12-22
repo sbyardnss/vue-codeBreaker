@@ -24,7 +24,7 @@ export default {
     <div :id="$style.inputContainer">
         <h3 :class="$style.header">select colors</h3>
         <ul :id="$style.choicesContainer">
-            <li v-for="color of colorChoices" :class="$style[getClass(color)]" @click="handleColorClicked(color)"></li>
+            <li :key="color" v-for="color of colorChoices" :class="[getClass(color)]" @click="handleColorClicked(color)"></li>
         </ul>
     </div>
 </template>
@@ -32,19 +32,23 @@ export default {
 #inputContainer {
     display: flex;
     flex-direction: column;
-    justify-content: flex-end;
-    width: 100%;
+    /* justify-content: space-evenly; */
+    width: 98%;
+    height: 25%;
+    margin-bottom: .25em;
 
 }
 
 .header {
-    margin: .5em 0 0 0;
+    /* height: 20%; */
+    margin: .25em 0 0 0;
 }
 
 #choicesContainer {
     background-color: lightgray;
     border-radius: 10px;
-    height: 5em;
+    height: 70%;
+    /* height: 6em; */
     display: flex;
     justify-content: space-evenly;
     align-items: center;
@@ -52,78 +56,84 @@ export default {
     padding: 0;
     margin: 0;
     width: 100%;
+    font-size: 3vw;
+    /* height: 3em; */
+    /* height: 100%; */
+    /* max-height: 80px; */
 }
 
-.redCircle {
-    height: 3em;
-    width: 3em;
+/* .redCircle {
+    height: 70%;
+    width: 12.5%;
     border: 2px solid black;
     border-radius: 50%;
     background-color: red;
-    margin: 0 .5em;
+    margin: 0 .25em;
 }
 
 .orangeCircle {
-    height: 3em;
-    width: 3em;
+    height: 70%;
+    width: 12.5%;
     border: 2px solid black;
     border-radius: 50%;
     background-color: orange;
-    margin: 0 .5em;
+    margin: 0 .25em;
 }
 
 .yellowCircle {
-    height: 3em;
-    width: 3em;
+    height: 70%;
+    width: 12.5%;
     border: 2px solid black;
     border-radius: 50%;
     background-color: yellow;
-    margin: 0 .5em;
+    margin: 0 .25em;
 }
 
 .greenCircle {
-    height: 3em;
-    width: 3em;
+    height: 70%;
+    width: 12.5%;
     border: 2px solid black;
     border-radius: 50%;
     background-color: green;
-    margin: 0 .5em;
+    margin: 0 .25em;
 }
 
 .blueCircle {
-    height: 3em;
-    width: 3em;
+    height: 70%;
+    width: 12.5%;
     border: 2px solid black;
     border-radius: 50%;
     background-color: blue;
-    margin: 0 .5em;
+    margin: 0 .25em;
 }
 
 .indigoCircle {
-    height: 3em;
-    width: 3em;
+    height: 70%;
+    width: 12.5%;
     border: 2px solid black;
     border-radius: 50%;
     background-color: indigo;
-    margin: 0 .5em;
+    margin: 0 .25em;
 }
 
 .violetCircle {
-    height: 3em;
-    width: 3em;
+    height: 70%;
+    width: 12.5%;
     border: 2px solid black;
     border-radius: 50%;
     background-color: violet;
-    margin: 0 .5em;
+    margin: 0 .25em;
 }
 
 .blankCircle {
-    height: 3em;
-    width: 3em;
+
+    height: 70%;
+    width: 12.5%;
     border: 2px solid rgb(196, 196, 196);
     border-radius: 50%;
     background-color: rgb(138, 138, 138);
-    margin: 0 .5em;
+    margin: 0 .25em;
     box-shadow: rgb(196, 196, 196) 0 1px 10px inset;
 
-}</style>
+} */
+</style>

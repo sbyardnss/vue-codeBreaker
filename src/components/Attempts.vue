@@ -4,7 +4,7 @@ import AccuracyCountVue from './AccuracyCount.vue';
 import BlankAttempt from './BlankAttempt.vue';
 
 export default {
-    name: "Attempts",
+    name: "AttemptList",
     props: {
         attemptedCodes: {
             type: Array as PropType<string[][]>,
@@ -32,16 +32,17 @@ export default {
 </script>
 <template>
     <div :id=$style.attemptListContainer>
-        <div :id=$style.attemptListWithAccuracy v-for="list in attemptedCodes">
+        <div :key="attemptedCodes.indexOf(list)" :id=$style.attemptListWithAccuracy v-for="list in attemptedCodes">
             <ul :class="$style['attemptList']">
-                <li v-for="color in list" :class="$style[getClass(color)]" @click="emitRemoveColor(color)"></li>
-                <li v-if="list.length < 4" v-for="n in 4 - list.length" :class="$style.blankCircle"></li>
+                <li :key="list.indexOf(color)" v-for="color in list" :class="[getClass(color)]" @click="emitRemoveColor(color)"></li>
+                <!-- eslint-disable-next-line -->
+                <li v-if="list.length < 4" v-for="n in 4 - list.length" :key="'blank--' + n" :class="$style.blankCircle"></li> 
             </ul>
             <div :id="$style.accuracyContainer">
                 <AccuracyCountVue :attempt="list" :correctCode="correctCodeForReference" />
             </div>
         </div>
-        <div :id="$style.attemptListWithAccuracy" v-for="n in 8 - attemptedCodes.length">
+        <div :id="$style.attemptListWithAccuracy" v-for="n in 8 - attemptedCodes.length" :key="'attempt--' + n">
             <BlankAttempt />
         </div>
     </div>
@@ -49,8 +50,10 @@ export default {
 <style module>
 #attemptListContainer {
     background-color: lightgray;
-    height: 36.5em;
-    width: 25.5em;
+    /* height: 36.5em;
+    width: 25.5em; */
+    height: 75%;
+    width: 98%;
     border-radius: 10px;
     display: flex;
     flex-direction: column;
@@ -60,7 +63,7 @@ export default {
 #attemptListWithAccuracy {
     display: flex;
     width: 100%;
-    height: 4em;
+    height: 10.75%;
     justify-content: space-evenly;
     align-items: center;
     margin-top: .5em;
@@ -88,7 +91,7 @@ export default {
     justify-self: flex-end;
 }
 
-.redCircle {
+/* .redCircle {
     height: 3em;
     width: 3em;
     border: 2px solid black;
@@ -159,5 +162,5 @@ export default {
     background-color: rgb(138, 138, 138);
     margin: 0 .5em;
     box-shadow: rgb(196, 196, 196) 0 1px 10px inset;
-}
+} */
 </style>
