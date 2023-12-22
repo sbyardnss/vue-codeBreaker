@@ -110,16 +110,16 @@ function handleColorRemoved(removedColor: string) {
   align-items: center;
   border: 2px solid gray;
 
-  border-radius: 12px;
+  border-radius: 2vh;
   /* width: 98vw;
   max-width: 26em;
   height: 98vh;
   max-height: 48em; */
   margin: 0;
-  width: 96vw; 
-  height: calc(96vw * 16 / 7); /* For an aspect ratio of 16:9 */
-  max-height: 96vh;
-  max-width: calc(96vh * 7 / 16); /* For an aspect ratio of 16:9 */
+  width: 100vw; 
+  height: calc(96vw * 18 / 10);
+  max-height: 100vh;
+  max-width: calc(96vh * 10 / 18);
 }
 
 </style>

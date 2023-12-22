@@ -34,8 +34,8 @@ export default {
     <section :id="$style.headerContainer">
         <!-- Flip card container -->
         <div :id="$style.flipCardContainer">
-            <!-- flip card front -->
             <div :class="$style[flipCardClass]">
+                <!-- flip card front -->
                 <div :class="$style['flipCardFront']">
                     <h1>Mastermind</h1>
                 </div>
@@ -47,9 +47,7 @@ export default {
                 </div>
             </div>
         </div>
-        <!-- <div :id="$style.refreshButtonContainer"> -->
-            <button :id="$style.refreshButton" @click="handleRefreshClicked()">Refresh</button>
-        <!-- </div> -->
+        <button :id="$style.refreshButton" @click="handleRefreshClicked()">Restart</button>
     </section>
 </template>
 <style module>
@@ -64,7 +62,9 @@ export default {
     /* border: 1px solid orange; */
     font-size: 1.9vh;
 }
-
+h1 {
+    font-size: 6vh;
+}
 #flipCardContainer {
     /* width: 98%;
     height: 100%; */
@@ -74,12 +74,12 @@ export default {
 
 #refreshButton {
     height: 100%;
-    /* width: 20%; */
+    width: 25%;
     text-align: center;
     font-size: 2vh;
     background-color: white;
     border: .1em solid gray;
-    border-radius: 10px;
+    border-radius: 2vh;
 }
 
 .correctCodeDisplay {
@@ -116,13 +116,13 @@ export default {
 .flipCardFront,
 .flipCardBack {
     position: absolute;
-    width: 80%;
+    width: 100%;
     height: 100%;
     -webkit-backface-visibility: hidden;
     /* Safari */
     backface-visibility: hidden;
     display: flex;
-    /* justify-content: center; */
+    justify-content: center;
     align-items: center;
 }
 

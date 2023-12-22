@@ -41,12 +41,12 @@ export default {
 
 .header {
     /* height: 20%; */
-    margin: 2% 0 0 0;
+    margin: 0;
 }
 
 #choicesContainer {
     background-color: lightgray;
-    border-radius: 10px;
+    border-radius: 1.2vh;
     height: 70%;
     /* height: 6em; */
     display: flex;
@@ -56,7 +56,7 @@ export default {
     padding: 0;
     margin: 0;
     width: 100%;
-    font-size: 1.6vh;
+    font-size: 2vh;
     /* height: 3em; */
     /* height: 100%; */
     /* max-height: 80px; */

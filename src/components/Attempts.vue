@@ -54,7 +54,7 @@ export default {
     width: 25.5em; */
     height: 75%;
     width: 98%;
-    border-radius: 10px;
+    border-radius: 2vh;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -73,7 +73,7 @@ export default {
 .attemptList {
     list-style: none;
     background-color: gray;
-    border-radius: 8px;
+    border-radius: 1.2vh;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -89,7 +89,7 @@ export default {
     height: 100%;
     border: 1px solid gray;
     background-color: lightgray;
-    border-radius: 8px;
+    border-radius: 1.2vh;
     justify-self: flex-end;
     font-size: 1.8vh;
 

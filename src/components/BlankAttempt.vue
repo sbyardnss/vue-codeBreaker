@@ -23,7 +23,7 @@ export default {
 .attemptList {
     list-style: none;
     background-color: gray;
-    border-radius: 8px;
+    border-radius: 1.2vh;
     display: flex;
     justify-content: space-between;
     align-items: center;
