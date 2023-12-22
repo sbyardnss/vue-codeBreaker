@@ -36,7 +36,7 @@ export default {
             <ul :class="$style['attemptList']">
                 <li :key="list.indexOf(color)" v-for="color in list" :class="[getClass(color)]" @click="emitRemoveColor(color)"></li>
                 <!-- eslint-disable-next-line -->
-                <li v-if="list.length < 4" v-for="n in 4 - list.length" :key="'blank--' + n" :class="$style.blankCircle"></li> 
+                <li v-if="list.length < 4" v-for="n in 4 - list.length" :key="'blank--' + n" class="blankCircle"></li> 
             </ul>
             <div :id="$style.accuracyContainer">
                 <AccuracyCountVue :attempt="list" :correctCode="correctCodeForReference" />
@@ -58,15 +58,16 @@ export default {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: space-evenly;
 }
 
 #attemptListWithAccuracy {
     display: flex;
     width: 100%;
-    height: 10.75%;
+    height: 10.5%;
     justify-content: space-evenly;
     align-items: center;
-    margin-top: .5em;
+    /* margin-top: 3.25%; */
 }
 
 .attemptList {
@@ -79,6 +80,7 @@ export default {
     padding: 0;
     width: 75%;
     height: 100%;
+    font-size: 1.8vh;
 
 }
 
@@ -89,78 +91,8 @@ export default {
     background-color: lightgray;
     border-radius: 8px;
     justify-self: flex-end;
+    font-size: 1.8vh;
+
 }
 
-/* .redCircle {
-    height: 3em;
-    width: 3em;
-    border: 2px solid black;
-    border-radius: 50%;
-    background-color: red;
-    margin: 0 .5em;
-}
-
-.orangeCircle {
-    height: 3em;
-    width: 3em;
-    border: 2px solid black;
-    border-radius: 50%;
-    background-color: orange;
-    margin: 0 .5em;
-}
-
-.yellowCircle {
-    height: 3em;
-    width: 3em;
-    border: 2px solid black;
-    border-radius: 50%;
-    background-color: yellow;
-    margin: 0 .5em;
-}
-
-.greenCircle {
-    height: 3em;
-    width: 3em;
-    border: 2px solid black;
-    border-radius: 50%;
-    background-color: green;
-    margin: 0 .5em;
-}
-
-.blueCircle {
-    height: 3em;
-    width: 3em;
-    border: 2px solid black;
-    border-radius: 50%;
-    background-color: blue;
-    margin: 0 .5em;
-}
-
-.indigoCircle {
-    height: 3em;
-    width: 3em;
-    border: 2px solid black;
-    border-radius: 50%;
-    background-color: indigo;
-    margin: 0 .5em;
-}
-
-.violetCircle {
-    height: 3em;
-    width: 3em;
-    border: 2px solid black;
-    border-radius: 50%;
-    background-color: violet;
-    margin: 0 .5em;
-}
-
-.blankCircle {
-    height: 3em;
-    width: 3em;
-    border: 2px solid rgb(196, 196, 196);
-    border-radius: 50%;
-    background-color: rgb(138, 138, 138);
-    margin: 0 .5em;
-    box-shadow: rgb(196, 196, 196) 0 1px 10px inset;
-} */
 </style>

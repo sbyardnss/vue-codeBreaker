@@ -5,7 +5,7 @@ export default {
 </script>
 <template>
         <ul :class="$style['attemptList']">
-            <li v-for="n in 4" :class="$style['blankCircle']"></li>
+            <li :key="'blank' + n" v-for="n in 4" :class="$style['blankCircle']"></li>
         </ul>
         <div :id="$style.accuracyContainer">
         </div>
@@ -30,6 +30,7 @@ export default {
     padding: 0;
     width: 75%;
     height: 100%;
+    font-size: 1.8vh;
 
 }
 
@@ -38,7 +39,7 @@ export default {
     height: 100%;
     border: 1px solid gray;
     background-color: lightgray;
-    border-radius: 8px;
+    border-radius: 1.2vh;
     justify-self: flex-end;
 }
 

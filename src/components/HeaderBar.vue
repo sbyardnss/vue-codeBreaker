@@ -1,6 +1,5 @@
 <script lang="ts">
 import type { PropType } from 'vue';
-import '@/assets/color-nodes.css'
 
 export default {
     name: "HeaderBar",
@@ -43,36 +42,43 @@ export default {
                 <!-- flip card back -->
                 <div :class="$style['flipCardBack']">
                     <ul :class="$style['correctCodeDisplay']" v-if="codeSolved">
-                        <li :key="color" v-for="(color) in correctCodeForDisplay" :class="$style[getClass(color)]"></li>
+                        <li :key="color" v-for="(color) in correctCodeForDisplay" :class="[getClass(color)]"></li>
                     </ul>
                 </div>
             </div>
         </div>
-        <div :id="$style.refreshButtonContainer">
+        <!-- <div :id="$style.refreshButtonContainer"> -->
             <button :id="$style.refreshButton" @click="handleRefreshClicked()">Refresh</button>
-        </div>
+        <!-- </div> -->
     </section>
 </template>
 <style module>
 #headerContainer {
     display: flex;
     align-items: center;
+    justify-content: space-between;
     /* height: 5em; */
-    height: 10%;
+    height: 15%;
     width: 98%;
     margin: .25em 0;
+    /* border: 1px solid orange; */
+    font-size: 1.9vh;
 }
 
 #flipCardContainer {
-    width: 20em;
+    /* width: 98%;
+    height: 100%; */
+    width: 70%;
     z-index: 10;
 }
 
 #refreshButton {
-    height: 5em;
-    width: 6.6em;
+    height: 100%;
+    /* width: 20%; */
+    text-align: center;
+    font-size: 2vh;
     background-color: white;
-    border: 2px solid gray;
+    border: .1em solid gray;
     border-radius: 10px;
 }
 
@@ -110,13 +116,13 @@ export default {
 .flipCardFront,
 .flipCardBack {
     position: absolute;
-    width: 100%;
+    width: 80%;
     height: 100%;
     -webkit-backface-visibility: hidden;
     /* Safari */
     backface-visibility: hidden;
     display: flex;
-    justify-content: center;
+    /* justify-content: center; */
     align-items: center;
 }
 
@@ -151,67 +157,4 @@ export default {
     font-weight: bold;
     margin-top: 1.25rem;
 }
-
-/* .redCircle {
-    height: 3em;
-    width: 3em;
-    border: 2px solid black;
-    border-radius: 50%;
-    background-color: red;
-    margin: 0 .5em;
-}
-
-.orangeCircle {
-    height: 3em;
-    width: 3em;
-    border: 2px solid black;
-    border-radius: 50%;
-    background-color: orange;
-    margin: 0 .5em;
-}
-
-.yellowCircle {
-    height: 3em;
-    width: 3em;
-    border: 2px solid black;
-    border-radius: 50%;
-    background-color: yellow;
-    margin: 0 .5em;
-}
-
-.greenCircle {
-    height: 3em;
-    width: 3em;
-    border: 2px solid black;
-    border-radius: 50%;
-    background-color: green;
-    margin: 0 .5em;
-}
-
-.blueCircle {
-    height: 3em;
-    width: 3em;
-    border: 2px solid black;
-    border-radius: 50%;
-    background-color: blue;
-    margin: 0 .5em;
-}
-
-.indigoCircle {
-    height: 3em;
-    width: 3em;
-    border: 2px solid black;
-    border-radius: 50%;
-    background-color: indigo;
-    margin: 0 .5em;
-}
-
-.violetCircle {
-    height: 3em;
-    width: 3em;
-    border: 2px solid black;
-    border-radius: 50%;
-    background-color: violet;
-    margin: 0 .5em;
-} */
 </style>

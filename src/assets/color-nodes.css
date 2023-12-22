@@ -1,7 +1,7 @@
 .redCircle {
   height: 3em;
   width: 3em;
-  border: 2px solid black;
+  border: .125em solid black;
   border-radius: 50%;
   background-color: red;
   margin: 0 .5em;
@@ -10,7 +10,7 @@
 .orangeCircle {
   height: 3em;
   width: 3em;
-  border: 2px solid black;
+  border: .125em solid black;
   border-radius: 50%;
   background-color: orange;
   margin: 0 .5em;
@@ -19,7 +19,7 @@
 .yellowCircle {
   height: 3em;
   width: 3em;
-  border: 2px solid black;
+  border: .125em solid black;
   border-radius: 50%;
   background-color: yellow;
   margin: 0 .5em;
@@ -28,7 +28,7 @@
 .greenCircle {
   height: 3em;
   width: 3em;
-  border: 2px solid black;
+  border: .125em solid black;
   border-radius: 50%;
   background-color: green;
   margin: 0 .5em;
@@ -37,7 +37,7 @@
 .blueCircle {
   height: 3em;
   width: 3em;
-  border: 2px solid black;
+  border: .125em solid black;
   border-radius: 50%;
   background-color: blue;
   margin: 0 .5em;
@@ -46,7 +46,7 @@
 .indigoCircle {
   height: 3em;
   width: 3em;
-  border: 2px solid black;
+  border: .125em solid black;
   border-radius: 50%;
   background-color: indigo;
   margin: 0 .5em;
@@ -55,8 +55,19 @@
 .violetCircle {
   height: 3em;
   width: 3em;
-  border: 2px solid black;
+  border: .125em solid black;
   border-radius: 50%;
   background-color: violet;
   margin: 0 .5em;
+}
+
+.blankCircle {
+  height: 3em;
+  width: 3em;
+  border: 2px solid rgb(196, 196, 196);
+  border-radius: 50%;
+  background-color: rgb(138, 138, 138);
+  margin: 0 .5em;
+  box-shadow: rgb(196, 196, 196) 0 1px 10px inset;
+
 }
