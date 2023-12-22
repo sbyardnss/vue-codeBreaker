@@ -116,9 +116,9 @@ function handleColorRemoved(removedColor: string) {
   height: 98vh;
   max-height: 48em; */
   margin: 0;
-  width: 100vw; 
+  width: 98vw; 
   height: calc(96vw * 18 / 10);
-  max-height: 100vh;
+  max-height: 96vh;
   max-width: calc(96vh * 10 / 18);
 }
 
