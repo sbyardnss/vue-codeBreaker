@@ -15,6 +15,7 @@ export default {
     },
     methods: {
         handleColorClicked(color: string) {
+            console.log(color);
             this.$emit("colorAdded", color)
         }
     }

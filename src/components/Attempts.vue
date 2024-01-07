@@ -32,7 +32,7 @@ export default {
 </script>
 <template>
     <div :id=$style.attemptListContainer>
-        <div :key="attemptedCodes.indexOf(list)" :id=$style.attemptListWithAccuracy v-for="list in attemptedCodes">
+        <div :key="attemptedCodes.indexOf(list)" :class=$style.attemptListWithAccuracy v-for="list in attemptedCodes">
             <ul :class="$style['attemptList']">
                 <li :key="list.indexOf(color)" v-for="color in list" :class="[getClass(color)]" @click="emitRemoveColor(color)"></li>
                 <!-- eslint-disable-next-line -->
@@ -42,8 +42,10 @@ export default {
                 <AccuracyCountVue :attempt="list" :correctCode="correctCodeForReference" />
             </div>
         </div>
-        <div :id="$style.attemptListWithAccuracy" v-for="n in 8 - attemptedCodes.length" :key="'attempt--' + n">
-            <BlankAttempt />
+        <div :class=$style.attemptListWithAccuracy v-for="n in 8 - attemptedCodes.length" :key="'attempt--' + n">
+            <div :class="$style.individualAttemptWithAccuracy" v-if="attemptedCodes.length < 8">
+                <BlankAttempt />
+            </div>
         </div>
     </div>
 </template>
@@ -61,7 +63,7 @@ export default {
     justify-content: space-evenly;
 }
 
-#attemptListWithAccuracy {
+.attemptListWithAccuracy {
     display: flex;
     width: 100%;
     height: 10.5%;
@@ -95,4 +97,11 @@ export default {
 
 }
 
+.individualAttemptWithAccuracy {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 100%;
+    height: 100%;
+}
 </style>

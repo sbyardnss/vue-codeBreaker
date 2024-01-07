@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import AttemptList from './components/Attempts.vue'
-import CodeInput from './components/CodeInput.vue';
-import HeaderBar from './components/HeaderBar.vue';
-import { ref, onMounted } from 'vue';
-import type { Ref } from 'vue';
+import CodeInput from './components/CodeInput.vue'
+import HeaderBar from './components/HeaderBar.vue'
+import { ref, onMounted } from 'vue'
+import type { Ref } from 'vue'
 let attemptsForListComponent: Ref<string[][]> = ref([])
 let currentAttempt: Ref<string[]> = ref([])
 const appColorChoices = ['red', 'orange', 'yellow', 'green', 'blue', 'violet']
@@ -40,19 +40,22 @@ function checkIfNewCodeIsCorrect(code: string[]) {
   const correctCodeString = correctCode.value.toString()
   if (codeString === correctCodeString) {
     solved.value = true
+  } else {
+    if (attemptsForListComponent.value.length < 8) {
+      attemptsForListComponent.value.push([])
+    }
   }
-  else {
-    attemptsForListComponent.value.push([])
-  }
-
 }
 function handleCurrentCodeUpdated(addedColor: string) {
   const lastIndexOfAttempts = attemptsForListComponent.value.length - 1
+  console.log('handler in app, lastIndex', lastIndexOfAttempts);
+
   //checking to see if blank input needs replacing
   if (!solved.value) {
-    if (currentAttempt.value.indexOf("blank") !== -1) {
-      const blankIndex = currentAttempt.value.indexOf("blank")
+    if (currentAttempt.value.indexOf('blank') !== -1) {
+      const blankIndex = currentAttempt.value.indexOf('blank')
       currentAttempt.value.splice(blankIndex, 1, addedColor)
+
     }
     //if no blank, simply pushing into current attempt
     else {
@@ -63,14 +66,16 @@ function handleCurrentCodeUpdated(addedColor: string) {
       attemptsForListComponent.value.splice(lastIndexOfAttempts, 1, currentAttempt.value)
       //removing addedColor from choices
       const indexOfAddedColor = availableColorChoices.value.indexOf(addedColor)
-      availableColorChoices.value.splice(indexOfAddedColor, 1, "blank")
+      availableColorChoices.value.splice(indexOfAddedColor, 1, 'blank')
     }
     //if 4, checking code and replacing last element in attempts with current attempt
     else {
       checkIfNewCodeIsCorrect(currentAttempt.value)
       attemptsForListComponent.value.splice(lastIndexOfAttempts, 1, currentAttempt.value)
+      console.log('attemptsForListComponent.value', attemptsForListComponent.value);
       availableColorChoices.value = [...appColorChoices]
       currentAttempt.value = []
+      console.trace('new attempt')
     }
   }
 }
@@ -79,25 +84,34 @@ function handleCurrentCodeUpdated(addedColor: string) {
 function handleColorRemoved(removedColor: string) {
   const colorIndex = currentAttempt.value.indexOf(removedColor)
   if (currentAttempt.value.length > 1) {
-    currentAttempt.value.splice(colorIndex, 1, "blank")
-  }
-  else {
+    currentAttempt.value.splice(colorIndex, 1, 'blank')
+  } else {
     currentAttempt.value.splice(colorIndex, 1)
   }
   const indexOfColorInAppChoices = appColorChoices.indexOf(removedColor)
   availableColorChoices.value.splice(indexOfColorInAppChoices, 1, removedColor)
 }
-
 </script>
 <template>
   <main :id="$style.appContainer">
-    <HeaderBar :codeSolved="solved" :correctCodeForDisplay="correctCode" :getClass="getClass"
-      @refreshClicked="refreshCode" />
-    <AttemptList :attemptedCodes="attemptsForListComponent" :getClass="getClass" :correctCodeForReference="correctCode"
-      @colorRemoved="handleColorRemoved" />
-    <CodeInput :getClass="getClass" :colorChoices="availableColorChoices" @colorAdded="handleCurrentCodeUpdated" />
+    <HeaderBar
+      :codeSolved="solved"
+      :correctCodeForDisplay="correctCode"
+      :getClass="getClass"
+      @refreshClicked="refreshCode"
+    />
+    <AttemptList
+      :attemptedCodes="attemptsForListComponent"
+      :getClass="getClass"
+      :correctCodeForReference="correctCode"
+      @colorRemoved="handleColorRemoved"
+    />
+    <CodeInput
+      :getClass="getClass"
+      :colorChoices="availableColorChoices"
+      @colorAdded="handleCurrentCodeUpdated"
+    />
   </main>
-  
 </template>
 <style module>
 .header {
@@ -116,10 +130,9 @@ function handleColorRemoved(removedColor: string) {
   height: 98vh;
   max-height: 48em; */
   margin: 0;
-  width: 98vw; 
+  width: 98vw;
   height: calc(96vw * 18 / 10);
   max-height: 96vh;
   max-width: calc(96vh * 10 / 18);
 }
-
 </style>
