@@ -9,7 +9,7 @@ let currentAttempt: Ref<string[]> = ref([])
 const appColorChoices = ['red', 'orange', 'yellow', 'green', 'blue', 'violet']
 let availableColorChoices: Ref<string[]> = ref([])
 let correctCode: Ref<string[]> = ref([])
-let solved: Ref<boolean> = ref(false)
+let showingCode: Ref<boolean> = ref(false)
 function createNewCode() {
   const newCode: string[] = []
   const copyColorChoices = [...appColorChoices]
@@ -30,7 +30,7 @@ function refreshCode() {
   availableColorChoices.value = [...appColorChoices]
   attemptsForListComponent.value = []
   currentAttempt.value = []
-  solved.value = false
+  showingCode.value = false
 }
 function getClass(color: string): string {
   return `${color}Circle`
@@ -38,24 +38,22 @@ function getClass(color: string): string {
 function checkIfNewCodeIsCorrect(code: string[]) {
   const codeString = code.toString()
   const correctCodeString = correctCode.value.toString()
-  if (codeString === correctCodeString) {
-    solved.value = true
+
+  if (codeString === correctCodeString || attemptsForListComponent.value.length > 7) {
+    showingCode.value = true
   } else {
-    if (attemptsForListComponent.value.length < 8) {
-      attemptsForListComponent.value.push([])
-    }
+    attemptsForListComponent.value.push([])
   }
 }
 function handleCurrentCodeUpdated(addedColor: string) {
   const lastIndexOfAttempts = attemptsForListComponent.value.length - 1
-  console.log('handler in app, lastIndex', lastIndexOfAttempts);
+  console.log('handler in app, lastIndex', lastIndexOfAttempts)
 
   //checking to see if blank input needs replacing
-  if (!solved.value) {
+  if (!showingCode.value) {
     if (currentAttempt.value.indexOf('blank') !== -1) {
       const blankIndex = currentAttempt.value.indexOf('blank')
       currentAttempt.value.splice(blankIndex, 1, addedColor)
-
     }
     //if no blank, simply pushing into current attempt
     else {
@@ -72,7 +70,7 @@ function handleCurrentCodeUpdated(addedColor: string) {
     else {
       checkIfNewCodeIsCorrect(currentAttempt.value)
       attemptsForListComponent.value.splice(lastIndexOfAttempts, 1, currentAttempt.value)
-      console.log('attemptsForListComponent.value', attemptsForListComponent.value);
+      console.log('attemptsForListComponent.value', attemptsForListComponent.value)
       availableColorChoices.value = [...appColorChoices]
       currentAttempt.value = []
       console.trace('new attempt')
@@ -95,7 +93,7 @@ function handleColorRemoved(removedColor: string) {
 <template>
   <main :id="$style.appContainer">
     <HeaderBar
-      :codeSolved="solved"
+      :codeSolved="showingCode"
       :correctCodeForDisplay="correctCode"
       :getClass="getClass"
       @refreshClicked="refreshCode"
