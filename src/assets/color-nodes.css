@@ -64,7 +64,7 @@
 .blankCircle {
   height: 3em;
   width: 3em;
-  border: 2px solid rgb(196, 196, 196);
+  border: .125em solid rgb(196, 196, 196);
   border-radius: 50%;
   background-color: rgb(138, 138, 138);
   margin: 0 .5em;

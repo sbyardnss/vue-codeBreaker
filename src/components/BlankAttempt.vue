@@ -5,7 +5,7 @@ export default {
 </script>
 <template>
         <ul :class="$style['attemptList']">
-            <li :key="'blank' + n" v-for="n in 4" :class="$style['blankCircle']"></li>
+            <li :key="'blank' + n" v-for="n in 4" class="blankCircle"></li>
         </ul>
         <div :id="$style.accuracyContainer">
         </div>
