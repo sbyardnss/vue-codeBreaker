@@ -23,7 +23,7 @@ function createNewCode() {
 onMounted(() => {
   createNewCode()
   availableColorChoices.value = [...appColorChoices]
-  console.log(correctCode.value)
+  // console.log(correctCode.value)
 })
 function refreshCode() {
   createNewCode()
@@ -47,7 +47,6 @@ function checkIfNewCodeIsCorrect(code: string[]) {
 }
 function handleCurrentCodeUpdated(addedColor: string) {
   const lastIndexOfAttempts = attemptsForListComponent.value.length - 1
-  console.log('handler in app, lastIndex', lastIndexOfAttempts)
 
   //checking to see if blank input needs replacing
   if (!showingCode.value) {
@@ -70,10 +69,8 @@ function handleCurrentCodeUpdated(addedColor: string) {
     else {
       checkIfNewCodeIsCorrect(currentAttempt.value)
       attemptsForListComponent.value.splice(lastIndexOfAttempts, 1, currentAttempt.value)
-      console.log('attemptsForListComponent.value', attemptsForListComponent.value)
       availableColorChoices.value = [...appColorChoices]
       currentAttempt.value = []
-      console.trace('new attempt')
     }
   }
 }
