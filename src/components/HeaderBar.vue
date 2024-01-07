@@ -56,7 +56,7 @@ export default {
     align-items: center;
     justify-content: space-between;
     /* height: 5em; */
-    height: 15%;
+    height: 10%;
     width: 98%;
     margin: .25em 0;
     /* border: 1px solid orange; */
